@@ -1,0 +1,15 @@
+---
+name: 백엔드 PR 생성 템플릿
+about: 해당 PR 생성 템플릿을 사용하여 PR을 생성해주세요.
+title: ''
+labels: ''
+assignees: dnwls16071, LEE-Kyungjae
+
+---
+
+## 제목
+
+## 체크 리스트
+
+- [ ] 구현 내용1
+- [ ] 구현 내용2
