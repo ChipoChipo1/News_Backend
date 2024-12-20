@@ -1,0 +1,71 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/news_db
+    username: root
+    password: rkgus1004!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10  # 커넥션 풀 크기 관리
+      minimum-idle: 2
+      idle-timeout: 30000  # 30초 후 유휴 커넥션 종료
+      max-lifetime: 1800000  # 30분 후 커넥션 갱신
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true  # SQL 쿼리 주석 활성화
+        highlight_sql: true
+  redis:
+    host: localhost
+    port: 6379
+    password: ""
+    timeout: 2000
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: "Ov23liNBnPjaWNGuu02F"
+            client-secret: ${GITHUB_CLIENT_SECRET}
+            redirect-uri: "{baseUrl}/login/oauth2/code/github"
+            scope: read:user,user:email
+            client-authentication-method: post
+            authorization-grant-type: authorization_code
+            provider: github
+          kakao:
+            client-id: ${KAKAO_CLIENT_ID}
+            client-secret: "85a8cd7f739abdb5be55a4dd117c2ad8"
+            redirect-uri: "{baseUrl}/login/oauth2/code/kakao"
+            client-authentication-method: post
+            authorization-grant-type: authorization_code
+            provider: kakao
+        provider:
+          github:
+            authorization-uri: https://github.com/login/oauth/authorize
+            token-uri: https://github.com/login/oauth/access_token
+            user-info-uri: https://api.github.com/user
+            user-name-attribute: id
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+jwt:
+  secret-key: temp-secret-key-here
+  access-expiration: 3600000      # 액세스 토큰 (1시간)
+  refresh-expiration: 604800000   # 리프레시 토큰 (7일)
+session:
+    store-type: redis
+logging:
+  level:
+    root: DEBUG
+    org.springframework.security: DEBUG
