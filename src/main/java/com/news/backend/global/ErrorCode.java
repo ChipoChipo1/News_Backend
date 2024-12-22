@@ -18,6 +18,11 @@ public enum ErrorCode {
     USER_ALREADY_EXISTS(HttpStatus.CONFLICT.value(), "이미 존재하는 사용자입니다."),
     USER_NOT_REGISTERED(HttpStatus.BAD_REQUEST.value(), "등록되지 않은 사용자입니다."),
 
+
+
+
+
+
     ;//
 
     private final int status;
